@@ -1,59 +1,60 @@
-0. I'm not going anywhere. You can print that wherever you want to. I'm here and I'm
- a Spur for life                                                                    
-Write a function that produces output according to a format.                        
-                                                                                    
-                                                                                    
-1. Education is when you read the fine print. Experience is what you get if you don'
-t                                                                                   
-Handle the following conversion specifiers:
+PRINTF is a Collaborative Project to be done in teams of 2 people (HARRY ONISOWURUN JIETY, Moses Chukwuma)
 
-2. With a face like mine, I do better in print                                      
-Handle the following custom conversion specifiers:                                  
-                                                                                    
-3. What one has not experienced, one will never understand in print                 
-Handle the following conversion specifiers:                                         
-                                                                                    
-4. Nothing in fine print is ever good news                                          
-Use a local buffer of 1024 chars in order to call write as little as possible.      
-                                                                                    
-5. My weakness is wearing too much leopard print                                    
-Handle the following custom conversion specifier:                                   
-                                                                                    
-6. How is the world ruled and led to war? Diplomats lie to journalists and believe t
-hese lies when they see them in print                                               
-Handle the following conversion specifier: p.                                       
-                                                                                    
-7. The big print gives and the small print takes away                               
-Handle the following flag characters for non-custom conversion specifiers:          
-                                                                                    
-8. Sarcasm is lost in print                                                         
-Handle the following length modifiers for non-custom conversion specifiers:         
-                                                                                    
-l                                                                                   
-h                                                                                   
-Conversion specifiers to handle: d, i, u, o, x, X                                   
-                                                                                    
-9. Print some money and give it to us for the rain forests                          
-Handle the field width for non-custom conversion specifiers.                        
-                                                                                    
-10. The negative is the equivalent of the composer's score, and the print the perfor
-mance                                                                               
-Handle the precision for non-custom conversion specifiers.                          
-                                                                                    
-11. It's depressing when you're still around and your albums are out of print       
-Handle the 0 flag character for non-custom conversion specifiers.                   
-                                                                                    
-12. Every time that I wanted to give up, if I saw an interesting textile, print what
- ever, suddenly I would see a collection                                            
-Handle the - flag character for non-custom conversion specifiers.                   
-                                                                                    
-13. Print is the sharpest and the strongest weapon of our party                     
-Handle the following custom conversion specifier:                                   
-                                                                                    
-14. The flood of print has turned reading into a process of gulping rather than savo
-ring                                                                                
-Handle the following custom conversion specifier:                                   
-                                                                                    
-15. *                                                                               
-All the above options work well together. 
+# Custom Formatting Functions
 
+This code includes custom implementations of several formatting functions, such as `custom_itoa`, `custom_strcpy`, `custom_snprintf`, and `custom_printf`. These functions provide additional functionality and error handling compared to their standard library counterparts.
+
+## `custom_itoa`
+
+c
+int custom_itoa(int value, char* buffer, size_t bufferSize);
+
+
+This function converts an integer value to a null-terminated string representation and stores it in the provided buffer. The `bufferSize` parameter specifies the size of the buffer. The function returns the length of the generated string on success or -1 if the buffer size is insufficient.
+
+## `custom_strcpy`
+
+c
+int custom_strcpy(char* dest, const char* src, size_t destSize);
+
+
+This function copies the null-terminated source string `src` to the destination string `dest`. The `destSize` parameter specifies the size of the destination buffer. The function returns the number of characters copied on success or -1 if the destination buffer is too small.
+
+## `custom_snprintf`
+
+c
+int custom_snprintf(char* buffer, size_t bufferSize, const char* format, ...);
+
+
+This function formats and writes a null-terminated string to the provided buffer. It supports format specifiers `%d` for integers and `%s` for strings. The function returns the number of characters written on success or -1 if the buffer size is insufficient.
+
+## `custom_printf`
+
+c
+int custom_printf(const char* format, ...);
+
+
+This function provides functionality similar to the standard `printf` function. It accepts a format string and variable arguments, and prints the formatted output to the standard output. The function returns the number of characters printed on success or -1 if an error occurs.
+
+## Example Usage
+
+The `main` function in the code demonstrates an example usage of the `custom_printf` function. It prints a formatted message using the format string `"Hello, %s! You have %d messages."` and the corresponding arguments `"Austine"` and `3`. The total number of characters printed is then displayed.
+
+c
+int main() {
+    // Test custom_printf function
+    int count = custom_printf("Hello, %s! You have %d messages.", "Austine", 3);
+    printf("\nTotal characters printed: %d\n", count);
+
+    return 0;
+}
+
+
+In this example, the output would be:
+
+
+Hello, Austine! You have 3 messages.
+Total characters printed: 34
+
+
+Note that the `custom_printf` function internally utilizes the other custom formatting functions (`custom_itoa` and `custom_snprintf`) to handle the formatting and conversion tasks.

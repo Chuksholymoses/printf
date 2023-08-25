@@ -1,51 +1,45 @@
 #include "main.h"
 
-void print_buffer(char buffer[], int *buff_ind);
-
 /**
  * _printf - Printf function
  * @format: format.
  * Return: Printed chars.
+ * @...: variadic functions
  */
 
 int _printf(const char *format, ...) {
+    int i = 0, count = 0, value = 0;
+    int (*f)(va_list);
     va_list args;
-    int count = 0;
-
     va_start(args, format);
+    
 
-    while (*format) {
-        if (*format == '%') {
-            format++;
+    if (format == NULL) {
+        return -1;
+    }
 
-            
-            switch (*format) {
-                case 'c':
-                    count += _putchar(va_arg(args, int));
-                    break;
-                case 's': {
-                    const char *str = va_arg(args, const char *);
-                    while (*str) {
-                        count += _putchar(*str);
-                        str++;
-                    }
-                    break;
-                }
-                case '%':
-                    count += _putchar('%');
-                    break;
-                default:
-                    count += _putchar('%');
-                    count += _putchar(*format);
-            }
+    while (format[i]) {
+        if (format[i] != '%') {
+            value = write(1, &format[i], 1);
+            count += value;
+            i++;
         } else {
-            count += _putchar(*format);
+            f = check_spec(&format[i + 1]);
+            if (f != NULL) {
+                value = f(args);
+                count += value;
+                i = i + 2;
+            } else if (format[i + 1] == '\0') {
+                break; 
+            } else {
+                value = write(1, &format[i], 1);
+                count += value;
+                i++;
+            }
         }
-
-        format++;
     }
 
     va_end(args);
-
     return count;
 }
+
